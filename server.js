@@ -16,7 +16,7 @@ function createTodo(call, callback) {
 }
 
 function readTodos(call, callback) {
-  console.log(call);
+  callback(null, { items: todos });
 }
 
 const server = new grpc.Server();

@@ -17,6 +17,10 @@ client.createTodo(
     text: text,
   },
   (err, res) => {
-    console.log("res2", JSON.stringify(res));
+    console.log("res1", JSON.stringify(res));
   }
 );
+
+client.readTodos({}, (err, res) => {
+  console.log("res2", JSON.stringify(res));
+});
