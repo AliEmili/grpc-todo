@@ -19,11 +19,17 @@ function readTodos(call, callback) {
   callback(null, { items: todos });
 }
 
+function readTodosStream(call, callback) {
+  todos.forEach((t) => call.write(t));
+  call.end();
+}
+
 const server = new grpc.Server();
 
 server.addService(todoPackage.Todo.service, {
   createTodo: createTodo,
   readTodos: readTodos,
+  readTodosStream: readTodosStream,
 });
 server.bindAsync(
   "0.0.0.0:40000",

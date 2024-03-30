@@ -24,3 +24,12 @@ client.createTodo(
 client.readTodos({}, (err, res) => {
   console.log("res2", JSON.stringify(res));
 });
+
+const call = client.readTodosStream();
+call.on("data", (item) => {
+  console.log("received item from server", JSON.stringify(item));
+});
+
+call.on("end", (e) => {
+  console.log("server done");
+});
